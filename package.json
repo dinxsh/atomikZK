@@ -1,0 +1,35 @@
+{
+  "name": "zk-proof-generator",
+  "version": "0.1.0",
+  "description": "Zero-Knowledge Proof Generator using Cartesi Coprocessor and EigenLayer",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy": "hardhat run scripts/deploy.ts",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write .",
+    "setup:circuit": "ts-node scripts/setup_circuit.ts"
+  },
+  "dependencies": {
+    "@cartesi/coprocessor": "^1.0.0",
+    "@openzeppelin/contracts": "^5.0.1",
+    "snarkjs": "^0.7.2",
+    "circomlib": "^2.0.5"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@typechain/ethers-v6": "^0.5.1",
+    "@typechain/hardhat": "^9.1.0",
+    "@types/chai": "^4.3.11",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.19",
+    "chai": "^4.4.1",
+    "circom": "^0.5.46",
+    "dotenv": "^16.4.4",
+    "ethers": "^6.11.0",
+    "hardhat": "^2.19.5",
+    "mocha": "^10.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+} 
