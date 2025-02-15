@@ -1,0 +1,24 @@
+{
+  "name": "zk-proof-generator",
+  "version": "0.1.0",
+  "cartesi": {
+    "machine": {
+      "entrypoint": "python3 proof_generator.py",
+      "ram": "128Mi",
+      "rom": "128Mi",
+      "flash": {
+        "drive": "128Mi"
+      }
+    },
+    "coprocessor": {
+      "contract": {
+        "name": "ZKProofGenerator",
+        "artifact": "./artifacts/contracts/ZKProofGenerator.sol/ZKProofGenerator.json"
+      },
+      "network": {
+        "name": "localhost",
+        "url": "http://localhost:8545"
+      }
+    }
+  }
+} 

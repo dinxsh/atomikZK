@@ -8,13 +8,20 @@
     "deploy": "hardhat run scripts/deploy.ts",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write .",
-    "setup:circuit": "ts-node scripts/setup_circuit.ts"
+    "setup:circuit": "ts-node scripts/setup_circuit.ts",
+    "cartesi:build": "cartesi-coprocessor build",
+    "cartesi:start": "cartesi-coprocessor start",
+    "cartesi:stop": "cartesi-coprocessor stop",
+    "cartesi:deploy": "cartesi-coprocessor deploy",
+    "cartesi:test": "cartesi-coprocessor test",
+    "start:dev": "npm run cartesi:build && npm run cartesi:start"
   },
   "dependencies": {
     "@cartesi/coprocessor": "^1.0.0",
     "@openzeppelin/contracts": "^5.0.1",
     "snarkjs": "^0.7.2",
-    "circomlib": "^2.0.5"
+    "circomlib": "^2.0.5",
+    "@cartesi/cli": "^1.0.0"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",

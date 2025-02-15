@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  zk_proof_generator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./circuits:/opt/cartesi/share/circuits
+      - ./build:/opt/cartesi/share/build
+    environment:
+      - PYTHONUNBUFFERED=1
+    ports:
+      - "5005:5005"  # If needed for debugging
+    command: ["python3", "-u", "proof_generator.py"] 

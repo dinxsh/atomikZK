@@ -14,7 +14,7 @@ This project demonstrates a Zero-Knowledge Proof Generator implemented using the
 
 - Node.js (v16 or later)
 - Python 3.8+
-- Hardhat
+- Docker and Docker Compose
 - Cartesi Machine
 - Access to Cartesi Testnet
 - Circom (for circuit compilation)
@@ -22,18 +22,23 @@ This project demonstrates a Zero-Knowledge Proof Generator implemented using the
 
 ## Installation
 
-1. Clone the repository:
+1. Install Cartesi Coprocessor CLI:
+```bash
+npm install -g @cartesi/cli
+```
+
+2. Clone the repository:
 ```bash
 git clone <repository-url>
 cd zk-proof-generator
 ```
 
-2. Install dependencies:
+3. Install dependencies:
 ```bash
 npm install
 ```
 
-3. Configure environment variables:
+4. Configure environment variables:
 Create a `.env` file with the following variables:
 ```
 CARTESI_TESTNET_URL="YOUR_TESTNET_URL"
@@ -45,51 +50,56 @@ DEPLOYED_ADDRESS="DEPLOYED_CONTRACT_ADDRESS" # After deployment
 ## Project Structure
 
 ```
+├── cartesi/
+│   ├── Dockerfile              # Cartesi Machine environment
+│   ├── docker-compose.yml      # Local development setup
+│   ├── proof_generator.py      # Main proof generation logic
+│   └── requirements.txt        # Python dependencies
 ├── circuits/
 │   └── hash_preimage.circom    # ZK circuit definition
 ├── contracts/
 │   └── ZKProofGenerator.sol    # Main contract
-├── cartesi/
-│   └── proof_generator.py      # Cartesi Machine logic
 ├── scripts/
 │   ├── deploy.ts              # Deployment script
 │   ├── setup_circuit.ts       # Circuit setup script
 │   └── example.ts             # Example usage script
 ├── test/
 │   └── ZKProofGenerator.test.ts # Test cases
+├── cartesi.config.json        # Cartesi Coprocessor configuration
 ├── hardhat.config.ts
 └── package.json
 ```
 
 ## Development Workflow
 
-1. Set up the ZK circuit:
+1. Build the Cartesi Machine:
+```bash
+npm run cartesi:build
+```
+
+2. Set up the ZK circuit:
 ```bash
 npm run setup:circuit
 ```
-This will:
-- Compile the circuit
-- Generate proving/verification keys
-- Create necessary build artifacts
 
-2. Compile contracts:
+3. Start the Cartesi Coprocessor:
 ```bash
-npm run compile
-```
-
-3. Run tests:
-```bash
-npm test
+npm run cartesi:start
 ```
 
 4. Deploy the contract:
 ```bash
-npm run deploy
+npm run cartesi:deploy
 ```
 
-5. Run the example:
+5. Run tests:
 ```bash
-npx hardhat run scripts/example.ts
+npm run cartesi:test
+```
+
+6. For local development:
+```bash
+npm run start:dev
 ```
 
 ## Technical Details
@@ -112,6 +122,13 @@ The Python script in the Cartesi Machine:
 - Compiles and sets up the circuit
 - Generates ZK proofs using snarkjs
 - Returns proof data to the smart contract
+
+### Cartesi Coprocessor Integration
+
+The project uses Cartesi Coprocessor to:
+1. Run the ZK proof generation in a Linux environment
+2. Handle communication between the blockchain and the Cartesi Machine
+3. Ensure computation integrity through EigenLayer's security model
 
 ## Security
 
@@ -139,6 +156,20 @@ const status = await zkProofGenerator.getProofStatus(inputHash);
 3. Verify the proof:
 ```typescript
 await zkProofGenerator.verifyProof(inputHash);
+```
+
+## Troubleshooting
+
+1. If the Cartesi Machine fails to start:
+```bash
+npm run cartesi:stop
+docker system prune -a
+npm run cartesi:start
+```
+
+2. If proof generation fails:
+```bash
+docker logs zk-proof-generator
 ```
 
 ## Contributing
