@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Zero-Knowledge Proof Generator using Cartesi Coprocessor and EigenLayer",
   "scripts": {
+    "install": "npm install",
     "compile": "hardhat compile",
     "test": "hardhat test",
     "deploy": "hardhat run scripts/deploy.ts",
@@ -14,14 +15,22 @@
     "cartesi:stop": "cartesi-coprocessor stop",
     "cartesi:deploy": "cartesi-coprocessor deploy",
     "cartesi:test": "cartesi-coprocessor test",
-    "start:dev": "npm run cartesi:build && npm run cartesi:start"
+    "start:dev": "npm run cartesi:build && npm run cartesi:start",
+    "dev": "vite",
+    "build:frontend": "tsc && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@cartesi/coprocessor": "^1.0.0",
     "@openzeppelin/contracts": "^5.0.1",
     "snarkjs": "^0.7.2",
     "circomlib": "^2.0.5",
-    "@cartesi/cli": "^1.0.0"
+    "@cartesi/cli": "^1.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@headlessui/react": "^1.7.18",
+    "@heroicons/react": "^2.1.1",
+    "framer-motion": "^11.0.5",
+    "react-router-dom": "^6.22.1"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
@@ -30,13 +39,20 @@
     "@types/chai": "^4.3.11",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.11.19",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.17",
     "chai": "^4.4.1",
     "circom": "^0.5.46",
     "dotenv": "^16.4.4",
     "ethers": "^6.11.0",
     "hardhat": "^2.19.5",
     "mocha": "^10.3.0",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vite": "^5.1.3"
   }
 } 
